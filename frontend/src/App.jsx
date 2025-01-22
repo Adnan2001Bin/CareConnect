@@ -1,34 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import {createBrowserRouter} from "react-router-dom"
+import Home from './pages/user-view/Home'
+import Cart from './pages/user-view/Cart'
+import Collection from './pages/user-view/Collection'
+import Contact from './pages/user-view/Contact'
+import Product from './pages/user-view/Product'
+import Login from './pages/auth/Login'
+import PlaceOrder from './pages/user-view/PlaceOrder'
+import Orders from './pages/user-view/Orders'
 function App() {
-  const [count, setCount] = useState(0)
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element:<Home />
+    },
+    {
+      path: "/collection",
+      element:<Collection />
+    },
+    {
+      path: "/contact",
+      element:<Contact />
+    },
+    {
+      path: "/contact",
+      element:<Contact />
+    },
+    {
+      path: "/product/:productId",
+      element: <Product />,
+    },
+    {
+      path: "/cart",
+      element:<Cart />
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/place-Order",
+      element: <PlaceOrder />,
+    },
+    {
+      path: "/orders",
+      element:<Orders />
+    },
+  ])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      dd
+    </div>
   )
 }
 
