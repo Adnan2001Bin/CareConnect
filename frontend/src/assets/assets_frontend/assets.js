@@ -1,10 +1,11 @@
 import appointment_img from './appointment_img.png'
+import appointment_png from './appoinment.png'
 import header_img from './header_img.png'
 import group_profiles from './group_profiles.png'
 import profile_pic from './profile_pic.png'
 import contact_image from './contact_image.png'
 import about_image from './about_image.png'
-import logo from './logo.svg'
+import logo from './CareConnect.png'
 import dropdown_icon from './dropdown_icon.svg'
 import menu_icon from './menu_icon.svg'
 import cross_icon from './cross_icon.png'
@@ -31,6 +32,7 @@ import doc13 from './doc13.png'
 import doc14 from './doc14.png'
 import doc15 from './doc15.png'
 import Dermatologist from './Dermatologist.svg'
+import home from './file.png'
 import Gastroenterologist from './Gastroenterologist.svg'
 import General_physician from './General_physician.svg'
 import Gynecologist from './Gynecologist.svg'
@@ -55,7 +57,9 @@ export const assets = {
     dropdown_icon,
     upload_icon,
     stripe_logo,
-    razorpay_logo
+    razorpay_logo,
+    appointment_png,
+    home
 }
 
 export const specialityData = [
