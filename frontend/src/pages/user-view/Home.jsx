@@ -1,10 +1,11 @@
 import { assets } from "@/assets/assets_frontend/assets";
 import SpeialityMenu from "@/components/user-view/SpeialityMenu";
+import TopDoctors from "@/components/user-view/TopDoctors";
 import React from "react";
 
 const Home = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen mx-32 sm:mx[10%]">
       <div className="flex flex-col md:flex-row flex-wrap bg-blue-400 rounded-lg px-6 md:px-10 lg:px-20">
         <div className="md:w-1/2 flex flex-col items-start justify-center gap-4 py-8 m-auto md:py-[8vw] md:mb-[-30px]">
           <p className="text-3xl md:text-4xl lg:text-5xl text-white font-semibold leading-tight md:leading-tight lg:leading-tight">
@@ -38,6 +39,10 @@ const Home = () => {
 
       <section>
         <SpeialityMenu />
+      </section>
+
+      <section>
+        <TopDoctors />
       </section>
     </div>
   );
