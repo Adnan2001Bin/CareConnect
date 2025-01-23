@@ -17,7 +17,7 @@ function App() {
       element: <UserLayout />,
       children: [
         {
-          path: "home",
+          path: "/",
           element: <Home />,
         },
         {

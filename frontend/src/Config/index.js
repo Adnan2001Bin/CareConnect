@@ -142,7 +142,7 @@ export const userViewNavItems = [
   {
     id: "home",
     label: "Home",
-    path: "/home"
+    path: "/"
   },
   
   {
