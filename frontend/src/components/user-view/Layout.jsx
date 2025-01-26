@@ -1,6 +1,7 @@
 import React from "react";
 import UserHeader from "./Header";
 import { Outlet } from "react-router";
+import Footer from "./Footer";
 
 const UserLayout = () => {
   return (
@@ -10,6 +11,8 @@ const UserLayout = () => {
         <main className="flex flex-col w-full">
           <Outlet />
         </main>
+
+        <Footer />
       </div>
     </div>
   );

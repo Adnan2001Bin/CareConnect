@@ -2,6 +2,7 @@ import { assets } from "@/assets/assets_frontend/assets";
 import SpeialityMenu from "@/components/user-view/SpeialityMenu";
 import TopDoctors from "@/components/user-view/TopDoctors";
 import React from "react";
+import Banner from "../../components/user-view/Banner";
 
 const Home = () => {
   return (
@@ -43,6 +44,10 @@ const Home = () => {
 
       <section>
         <TopDoctors />
+      </section>
+
+      <section>
+        <Banner />
       </section>
     </div>
   );

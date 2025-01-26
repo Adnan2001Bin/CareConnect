@@ -6,7 +6,7 @@ import HeaderRightContent from "./HeaderRightContent";
 
 const UserHeader = () => {
   return (
-    <header className="sticky top-0 z-40 border-b-2 mx-32 sm:mx[10%]">
+    <header className="sticky top-0 z-40 border-b-2 mx-32 sm:mx[10%] sm:mx[10%]">
       <div className="flex items-center justify-between px-4 md:px-6 h-20">
         <Link to="/" className=" cursor-pointer">
           <img className="w-48 h-22 lg:w-48" src={assets.logo} alt="" />
