@@ -11,6 +11,6 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5175, // Set the development server port to 5174
+    port: 5300, // Set the development server port to 5174
   },
 });
