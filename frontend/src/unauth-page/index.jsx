@@ -33,7 +33,7 @@ const UnauthPage = () => {
           You are not authorized to access this page. Please contact the administrator if you believe this is a mistake.
         </p>
         <button
-          onClick={() => (window.location.href = "/")}
+          onClick={() => (window.location.href = "/home")}
           className="mt-6 px-6 py-3 bg-red-600 text-white rounded-md shadow-md hover:bg-red-700 transition"
         >
           Go Back Home

@@ -1,6 +1,6 @@
-import add_icon from './add_icon.svg'
+import add_icon from './add-user.png'
 import admin_logo from './admin_logo.svg'
-import appointment_icon from './appointment_icon.svg'
+import appointment_icon from './medical-appointment.png'
 import cancel_icon from './cancel_icon.svg'
 import doctor_icon from './doctor_icon.svg'
 import home_icon from './home_icon.svg'
@@ -11,6 +11,9 @@ import tick_icon from './tick_icon.svg'
 import appointments_icon from './appointments_icon.svg'
 import earning_icon from './earning_icon.svg'
 import patients_icon from './patients_icon.svg'
+import dashboard_icon from "./dashboard.png"
+import list from "./examination.png"
+
 
 export const assets = {
     add_icon,
@@ -25,5 +28,7 @@ export const assets = {
     list_icon,
     tick_icon,
     appointments_icon,
-    earning_icon
+    earning_icon,
+    dashboard_icon,
+    list
 }

@@ -1,3 +1,4 @@
+
 import { userViewNavItems } from "@/Config";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -14,7 +15,7 @@ const NavItems = () => {
             to={navItem.path}
             className="flex flex-col items-center gap-1"
           >
-            <p className="text-sm">{navItem.label}</p>
+            <p className="text-sm ">{navItem.label}</p>
             <hr
               className={`w-2/4 border-none h-0.5 bg-gray-700 ${
                 navItem.isActive ? "" : "hidden"
@@ -28,3 +29,5 @@ const NavItems = () => {
 };
 
 export default NavItems;
+
+

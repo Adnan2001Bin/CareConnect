@@ -1,4 +1,5 @@
 import { assets } from "@/assets/assets_frontend/assets";
+import { LockKeyhole, Mail, UserPen } from "lucide-react";
 
 export const registerFormControls = [
   {
@@ -7,6 +8,7 @@ export const registerFormControls = [
     placeholder: "Enter your user name",
     componentType: "input",
     type: "text",
+    logo:<UserPen />
   },
   {
     name: "email",
@@ -14,6 +16,7 @@ export const registerFormControls = [
     placeholder: "Enter your email",
     componentType: "input",
     type: "email",
+    logo: <Mail />
   },
   {
     name: "password",
@@ -21,6 +24,7 @@ export const registerFormControls = [
     placeholder: "Enter your password",
     componentType: "input",
     type: "password",
+    logo: <LockKeyhole />
   },
 ];
 
@@ -31,6 +35,7 @@ export const loginFormControls = [
     placeholder: "Enter your email",
     componentType: "input",
     type: "email",
+    logo: <Mail />
   },
   {
     name: "password",
@@ -38,6 +43,7 @@ export const loginFormControls = [
     placeholder: "Enter your password",
     componentType: "input",
     type: "password",
+    logo: <LockKeyhole />
   },
 ];
 
@@ -143,13 +149,13 @@ export const userViewNavItems = [
   {
     id: "home",
     label: "Home",
-    path: "/",
+    path: "/home",
   },
 
   {
-    id: "alldoctors",
-    label: "ALLDOCTORS",
-    path: "/doctors",
+    id: "doctorslist",
+    label: "Doctors",
+    path: "/doctorslist",
   },
 
   {

@@ -12,7 +12,7 @@ import Appoinment from "./pages/user-view/Appoinment";
 import AdminLayout from "./components/admin-view/AdminLayout";
 import AdminDashboard from "./pages/admin-view/AdminDashboard";
 import DoctorList from "./pages/admin-view/DoctorList";
-import AddDoctorList from "./pages/admin-view/AddDoctorList";
+import AddDoctor from "./pages/admin-view/AddDoctor";
 import Appointments from "./pages/admin-view/Appointments";
 import DoctorLayout from "./components/doctor-view/DoctorLayout";
 import DoctorDashboard from "./pages/doctor-view/DoctorDashboard";
@@ -23,31 +23,41 @@ import NotFound from "./Not-Found";
 import UnauthPage from "./unauth-page";
 import Register from "./pages/auth/Register";
 import AuthLayout from "./components/auth/layout";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from "./store/Auth-Slice";
 
 function App() {
-  const isAuthenticated = true; // Replace with actual authentication logic
-  const user = { role: "admin" }; // Replace with actual user data
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <CheckAuth isAuthenticated={isAuthenticated} user={user}><Home /></CheckAuth>,
-    },
-
- {   path: "/auth",
-    element: (
-      <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-        <AuthLayout />
-      </CheckAuth>
-    ),
-    children: [
-      { path: "login", element: <Login /> },
-      { path: "register", element: <Register /> },]
+      path: "/auth",
+      element: (
+        <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <AuthLayout />
+        </CheckAuth>
+      ),
+      children: [
+        { path: "login", element: <Login /> },
+        { path: "register", element: <Register /> },
+      ],
     },
 
     {
       path: "/doctor",
-      element: <CheckAuth isAuthenticated={isAuthenticated} user={user}><DoctorLayout /></CheckAuth>,
+      element: (
+        <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <DoctorLayout />
+        </CheckAuth>
+      ),
       children: [
         { path: "doctordashboard", element: <DoctorDashboard /> },
         { path: "doctorprofile", element: <DoctorProfile /> },
@@ -56,26 +66,33 @@ function App() {
     },
     {
       path: "/admin",
-      element: <CheckAuth isAuthenticated={isAuthenticated} user={user}><AdminLayout /></CheckAuth>,
+      element: (
+        <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <AdminLayout />
+        </CheckAuth>
+      ),
       children: [
         { path: "admindashboard", element: <AdminDashboard /> },
         { path: "doctorList", element: <DoctorList /> },
-        { path: "addDoctorList", element: <AddDoctorList /> },
+        { path: "addDoctor", element: <AddDoctor /> },
         { path: "appointments", element: <Appointments /> },
       ],
     },
     {
-      path: "/user",
-      element: <CheckAuth isAuthenticated={isAuthenticated} user={user}><UserLayout /></CheckAuth>,
+      path: "/",
+      element: (
+        <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <UserLayout />
+        </CheckAuth>
+      ),
       children: [
-        { path: "home", element: <Home /> },
-        { path: "doctors", element: <Doctors /> },
-        { path: "doctors/:speciality", element: <Doctors /> },
+        { path: "/home", element: <Home /> }, // Home page is accessible to all
+        { path: "doctorslist", element: <Doctors /> },
+        // { path: "doctorsList/:speciality", element: <Doctors /> },
         { path: "contact", element: <Contact /> },
         { path: "about", element: <About /> },
         { path: "my-profile", element: <MyProfile /> },
         { path: "my-appoinments", element: <MyAppoinments /> },
-        { path: "login", element: <Login /> },
         { path: "appoinments", element: <Appoinment /> },
         { path: "appoinments/:docId", element: <Appoinment /> },
       ],
