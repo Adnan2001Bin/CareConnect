@@ -1,5 +1,13 @@
 import React from "react";
 import { Input } from "../ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 
@@ -111,6 +119,7 @@ const CommonForm = ({
     }
     return element;
   };
+
   return (
     <form onSubmit={onSubmit} className={formClassName}>
       <div className="flex flex-col gap-3">
@@ -130,8 +139,8 @@ const CommonForm = ({
         disabled={isBtnDisabled}
         type="submit"
         className={`${
-          isBtnDisabled ? "opacity-50 cursor-not-allowed" : ""
-        } ${buttonClassName}`}
+      isBtnDisabled ? "opacity-50 cursor-not-allowed" : ""
+    } ${buttonClassName}`}
         style={{
           transformOrigin: "center",
         }}
@@ -143,4 +152,5 @@ const CommonForm = ({
     </form>
   );
 };
+
 export default CommonForm;

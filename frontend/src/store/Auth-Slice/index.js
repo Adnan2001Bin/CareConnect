@@ -5,6 +5,7 @@ const initialState = {
   isAuthenticated: false,
   isLoading: true,
   user: null,
+  role: null, 
 };
 
 export const registerUser = createAsyncThunk(
@@ -70,24 +71,26 @@ export const checkAuth = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
   "/auth/logout",
-
-  async () => {
+  async (_, { dispatch }) => {
     const response = await axios.post(
       "http://localhost:5000/api/auth/logout",
       {},
-      {
-        withCredentials: true,
-      }
-    )
+      { withCredentials: true }
+    );
+    dispatch(resetAuthState()); // Reset the auth state
     return response.data;
-
   }
-)
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action) => {},
+    resetAuthState: (state) => {
+      state.isAuthenticated = false;
+      state.user = null;
+      state.role = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -96,7 +99,8 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = action.payload.user;
+        state.role = action.payload.role; // Set role from the payload
         state.isAuthenticated = true;
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -110,8 +114,9 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.success ? action.payload.user : null;
-        state.isAuthenticated = action.payload.success;
+        state.user = action.payload.user;
+        state.role = action.payload.role; // Set role from the payload
+        state.isAuthenticated = true;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -125,20 +130,21 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
-        console.log("checkAuth response:", action.payload);
         state.isLoading = false;
-        state.user = action.payload.success ? action.payload.user : null;
-        state.isAuthenticated = action.payload.success;
-      })      
+        state.user = action.payload.user;
+        state.role = action.payload.role; // Set role from the payload
+        state.isAuthenticated = true;
+      })   
       
       .addCase(checkAuth.rejected, (state, action) => {
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
       })
-      .addCase(logoutUser.fulfilled, (state, action) => {
+      .addCase(logoutUser.fulfilled, (state) => {
         state.isLoading = false;
         state.user = null;
+        state.role = null;
         state.isAuthenticated = false;
       });
   },
