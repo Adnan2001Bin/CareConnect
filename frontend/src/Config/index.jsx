@@ -79,7 +79,6 @@ export const addFormElements = [
     label: "Experience",
     name: "experience",
     componentType: "select",
-    default:"1 Year",
     options: [
       { id: "1", label: "1 Year" },
       { id: "2", label: "2 Years" },
@@ -133,7 +132,7 @@ export const userViewNavItems = [
   {
     id: "home",
     label: "Home",
-    path: "/home",
+    path: "/",
   },
 
   {

@@ -1,9 +1,11 @@
 import React from "react";
 import UserHeader from "./Header";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Footer from "./Footer";
+import Home from "@/pages/user-view/Home";
 
 const UserLayout = () => {
+
   return (
     <div className="flex flex-col overflow-hidden min-h-screen mt-2 ">
       <div className="w-full ">

@@ -26,17 +26,19 @@ import AuthLayout from "./components/auth/layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from "./store/Auth-Slice";
+import Loader from "./components/Loader/Loader";
 
 function App() {
-  const { user, isAuthenticated, isLoading } = useSelector(
-    (state) => state.auth
-  );
+  const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
 
+  if (isLoading) {
+    return <div><Loader /></div>; // Or a 
+  }
   const router = createBrowserRouter([
     {
       path: "/auth",
@@ -81,14 +83,11 @@ function App() {
     {
       path: "/",
       element: (
-        <CheckAuth isAuthenticated={isAuthenticated} user={user}>
           <UserLayout />
-        </CheckAuth>
       ),
       children: [
-        { path: "/home", element: <Home /> }, // Home page is accessible to all
+        { path: "/", element: <Home /> },
         { path: "doctorslist", element: <Doctors /> },
-        // { path: "doctorsList/:speciality", element: <Doctors /> },
         { path: "contact", element: <Contact /> },
         { path: "about", element: <About /> },
         { path: "my-profile", element: <MyProfile /> },

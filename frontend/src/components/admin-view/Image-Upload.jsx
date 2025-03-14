@@ -22,6 +22,7 @@ const ProductImageUpload = ({
   const handleImageFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
+      console.log("File selected:", file); // Debugging
       handleFileUpload(file);
     }
   };
@@ -29,6 +30,7 @@ const ProductImageUpload = ({
   const handleFileUpload = (file) => {
     setImageFile(file);
     setImageLoadingState(true);
+    console.log("File uploaded:", file); // Debugging
     setTimeout(() => {
       setUploadedImageUrl(URL.createObjectURL(file));
       setImageLoadingState(false);
@@ -49,6 +51,7 @@ const ProductImageUpload = ({
     setIsDragOver(false);
     const droppedFile = event.dataTransfer.files?.[0];
     if (droppedFile) {
+      console.log("File dropped:", droppedFile); // Debugging
       handleFileUpload(droppedFile);
     }
   };
@@ -63,30 +66,42 @@ const ProductImageUpload = ({
     setImageLoadingState(true);
     const data = new FormData();
     data.append("my_file", imageFile);
-    const response = await axios.post(
-      "http://localhost:5000/api/admin/doctors/upload-image",
-      data
-    );
-    if (response?.data?.success) {
-      setUploadedImageUrl(response.data.result.url);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/admin/doctors/upload-image",
+        data
+      );
+      if (response?.data?.success) {
+        console.log("Image uploaded successfully:", response.data.result.url); // Debugging
+        setUploadedImageUrl(response.data.result.url);
+      } else {
+        console.error("Failed to upload image:", response.data); // Debugging
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error); // Debugging
+    } finally {
       setImageLoadingState(false);
     }
   }
 
   useEffect(() => {
-    if (imageFile !== null) uploadImageToCloudinary();
+    if (imageFile !== null) {
+      console.log("Uploading image to Cloudinary..."); // Debugging
+      uploadImageToCloudinary();
+    }
   }, [imageFile]);
 
   return (
-    <div className={` ${isCustomStyling ? "" : "max-w-md mx-auto"}`}>
-
+    <div
+      className={`${
+        isCustomStyling ? "" : "max-w-md mx-auto"
+      } ${isEditMode ? "opacity-60" : ""}`}
+    >
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`relative ${
-          isEditMode ? "opacity-60" : ""
-        } w-40 h-40 z-30 rounded-full border-2 border-dashed ${
+        className={`relative w-40 h-40 z-30 rounded-full border-2 border-dashed ${
           isDragOver ? "border-indigo-500 bg-indigo-50" : "border-gray-300"
         } flex items-center justify-center overflow-hidden`}
       >
@@ -98,7 +113,7 @@ const ProductImageUpload = ({
           onChange={handleImageFileChange}
           disabled={isEditMode}
         />
-        {!imageFile ? (
+        {!uploadedImageUrl ? (
           <Label
             htmlFor="image-upload"
             className={`${
@@ -124,6 +139,8 @@ const ProductImageUpload = ({
               size="sm"
               className="absolute top-5 right-5 p-1 bg-white border border-gray-900 rounded-lg shadow-sm hover:bg-gray-200 z-50"
               onClick={handleRemoveImage}
+          disabled={isEditMode}
+
             >
               <XIcon className="w-4 h-4 text-red-600" />
             </Button>
@@ -132,6 +149,7 @@ const ProductImageUpload = ({
       </div>
     </div>
   );
+  
 };
 
 export default ProductImageUpload;

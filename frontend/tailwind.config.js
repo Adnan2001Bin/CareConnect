@@ -54,6 +54,27 @@ export default {
       gridTemplateColumns: {
         auto: "repeat(auto-fill, minmax(200px, 1fr))",
       },
+      // Adding the loader animations
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+        'bounce-dot1': 'bounceDot1 1.4s infinite ease-in-out',
+        'bounce-dot2': 'bounceDot2 1.4s infinite ease-in-out -0.32s',
+        'bounce-dot3': 'bounceDot3 1.4s infinite ease-in-out -0.16s',
+      },
+      keyframes: {
+        bounceDot1: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '50%': { transform: 'translate(32px, -32px)' },
+        },
+        bounceDot2: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '50%': { transform: 'translate(-32px, -32px)' },
+        },
+        bounceDot3: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '50%': { transform: 'translate(0, -48px)' },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
