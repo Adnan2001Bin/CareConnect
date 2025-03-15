@@ -2,17 +2,12 @@ import { AddDoctor } from "../../models/addDoctors.js";
 
 export const getFilterDoctors = async (req, res) => {
   try {
-    const { speciality = [] } = req.query;
-
+    const { speciality } = req.query;
     let filters = {};
-
-    if (speciality.length) {
-      filters.category = { $in: category.split(",") };
+    if (speciality) {
+      filters.speciality = speciality;
     }
-
     const doctors = await AddDoctor.find(filters);
-
-
     res.status(200).json({
       success: true,
       data: doctors,
@@ -21,7 +16,7 @@ export const getFilterDoctors = async (req, res) => {
     console.log(error);
     res.status(500).json({
       success: false,
-      message: "Some error occured",
+      message: "Some error occurred",
     });
   }
 };

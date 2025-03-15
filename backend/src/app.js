@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth" , authRouter)
 app.use("/api/admin/doctors" , addDoctorRouter)
-app.use("/api/paitent/doctors" , patientViewDoctorRouter)
+app.use("/api/patient/doctors" , patientViewDoctorRouter)
 
 
 export default app;

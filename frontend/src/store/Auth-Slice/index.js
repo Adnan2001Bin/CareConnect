@@ -10,41 +10,33 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
   "/auth/register",
-  async (formData, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        formData,
-        { withCredentials: true }
-      );
-      return response.data;
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
+  async (formdata) => {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/api/auth/register`, 
+      formdata,
+      {
+        withCredentials: true,
       }
-      return rejectWithValue("Registration failed. Please try again.");
-    }
+    );
+    return response.data;
   }
 );
 
 export const loginUser = createAsyncThunk(
   "/auth/login",
-
-  async(formData , {rejectWithValue}) => {
+  async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${import.meta.env.VITE_API_BASE_URL}/api/auth/login`,
         formData,
         {
           withCredentials: true,
         }
       );
       return response.data;
-    }catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      }
-      return rejectWithValue("Login failed. Please try again.");
+    } catch (error) {
+      console.error("Error during login:", error);
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -52,10 +44,9 @@ export const loginUser = createAsyncThunk(
 
 export const checkAuth = createAsyncThunk(
   "/auth/checkauth",
-
   async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/auth/is-auth",
+      `${import.meta.env.VITE_API_BASE_URL}/api/auth/is-auth`, 
       {
         withCredentials: true,
         headers: {
@@ -64,20 +55,20 @@ export const checkAuth = createAsyncThunk(
         },
       }
     );
-
     return response.data;
   }
 );
 
 export const logoutUser = createAsyncThunk(
   "/auth/logout",
-  async (_, { dispatch }) => {
+  async () => {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/logout",
+      `${import.meta.env.VITE_API_BASE_URL}/api/auth/logout`, 
       {},
-      { withCredentials: true }
+      {
+        withCredentials: true,
+      }
     );
-    dispatch(resetAuthState()); // Reset the auth state
     return response.data;
   }
 );
