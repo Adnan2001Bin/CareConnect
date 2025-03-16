@@ -1,48 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { fetchAllFilterDoctors } from "@/store/Paitent/patient-slice";
 import DoctorCard from "@/components/user-view/DoctorCard";
 import Filters from "@/components/user-view/Filters";
 
 const Doctors = () => {
   const dispatch = useDispatch();
-  const [filters, setFilters] = useState({});
+  const [searchParams] = useSearchParams();
   const { doctorList, loading } = useSelector(
     (state) => state.paitentViewDoctor
   );
 
-  const handleFilter = (getSectionId, getCurrentOption) => {
-    // Create the new filters object
-    const newFilters = { speciality: getCurrentOption };
-
-    // Save the selected filter to sessionStorage
-    sessionStorage.setItem("selectedFilter", JSON.stringify(newFilters));
-
-    // Update the state with the new filters
-    setFilters(newFilters);
-
-    // Dispatch the action to fetch filtered doctors
-    dispatch(fetchAllFilterDoctors({ filterParams: newFilters }));
-  };
+  // Get the current filter from the URL
+  const speciality = searchParams.get("speciality");
 
   useEffect(() => {
-    // Check if a filter is stored in sessionStorage
-    const storedFilter = sessionStorage.getItem("selectedFilter");
-
-    if (storedFilter) {
-      // Parse the stored filter
-      const parsedFilter = JSON.parse(storedFilter);
-
-      // Update the state with the stored filter
-      setFilters(parsedFilter);
-
-      // Dispatch the action to fetch doctors based on the stored filter
-      dispatch(fetchAllFilterDoctors({ filterParams: parsedFilter }));
-    } else {
-      // If no filter is stored, fetch all doctors
-      dispatch(fetchAllFilterDoctors({ filterParams: {} }));
-    }
-  }, [dispatch]);
+    // Fetch doctors based on the filter in the URL
+    const filterParams = speciality ? { speciality } : {};
+    dispatch(fetchAllFilterDoctors({ filterParams }));
+  }, [dispatch, speciality]);
 
   return (
     <div>
@@ -59,7 +36,8 @@ const Doctors = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-[250px_1fr] lg:grid-cols-[280px_1fr] gap-6 bg-gray-100 py-12 px-4 sm:px-6 lg:px-14">
         <div>
-          <Filters filters={filters} handleFilter={handleFilter} />
+          {/* Remove handleFilter prop */}
+          <Filters />
         </div>
 
         {/* Loading State */}
@@ -69,6 +47,14 @@ const Doctors = () => {
           </div>
         )}
 
+        {/* Empty State */}
+        {!loading && doctorList?.length === 0 && (
+          <div className="text-center py-12 animate-fadeIn">
+            <p className="text-gray-600 text-lg">
+              No doctors found matching your criteria.
+            </p>
+          </div>
+        )}
         {/* Doctors Grid */}
         {!loading && doctorList && (
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -77,15 +63,6 @@ const Doctors = () => {
                 <DoctorCard doctor={doctor} />
               </div>
             ))}
-          </div>
-        )}
-
-        {/* Empty State */}
-        {!loading && doctorList?.length === 0 && (
-          <div className="text-center py-12 animate-fadeIn">
-            <p className="text-gray-600 text-lg">
-              No doctors found matching your criteria.
-            </p>
           </div>
         )}
       </div>

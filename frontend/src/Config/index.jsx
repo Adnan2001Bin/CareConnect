@@ -152,26 +152,32 @@ export const userViewNavItems = [
 
 export const specialityData = [
   {
-    speciality: "General physician",
+    id: "General_physician",
+    speciality: "General_physician",
     image: assets.General_physician,
   },
   {
+    id: "Gynecologist",
     speciality: "Gynecologist",
     image: assets.Gynecologist,
   },
   {
+    id: "Dermatologist",
     speciality: "Dermatologist",
     image: assets.Dermatologist,
   },
   {
+    id: "Pediatricians",
     speciality: "Pediatricians",
     image: assets.Pediatricians,
   },
   {
+    id: "Neurologist",
     speciality: "Neurologist",
     image: assets.Neurologist,
   },
   {
+    id: "Gastroenterologist",
     speciality: "Gastroenterologist",
     image: assets.Gastroenterologist,
   },
