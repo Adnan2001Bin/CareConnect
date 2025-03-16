@@ -1,10 +1,20 @@
-// components/DoctorCard.jsx
 import { specialityOptionsMap } from "@/Config";
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const DoctorCard = ({ doctor }) => {
+  const navigate = useNavigate();
+
+  const handleDoctorClick = () => {
+    // Navigate to the Appoinment page with the doctor's ID
+    navigate(`/appoinments/${doctor._id}`);
+  };
+
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 max-w-sm mx-auto border border-gray-200 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-bounceIn">
+    <div
+      onClick={handleDoctorClick}
+      className="bg-white rounded-2xl shadow-md p-6 max-w-sm mx-auto border border-gray-200 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-bounceIn"
+    >
       {/* Doctor Image Section */}
       <div className="relative group">
         <img

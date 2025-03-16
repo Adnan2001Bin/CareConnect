@@ -15,6 +15,11 @@ const Doctors = () => {
   // Get the current filter from the URL
   const speciality = searchParams.get("speciality");
 
+  const handleGetDoctorDetails = (getCurrentDoctorId) => {
+   console.log("getCurrentDoctorId",getCurrentDoctorId);
+   
+  };
+
   useEffect(() => {
     // Fetch doctors based on the filter in the URL
     const filterParams = speciality ? { speciality } : {};
@@ -60,7 +65,7 @@ const Doctors = () => {
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {doctorList.map((doctor, index) => (
               <div key={doctor.id} className={`animation-delay-${index * 100}`}>
-                <DoctorCard doctor={doctor} />
+                <DoctorCard handleGetDoctorDetails={handleGetDoctorDetails} doctor={doctor} />
               </div>
             ))}
           </div>
