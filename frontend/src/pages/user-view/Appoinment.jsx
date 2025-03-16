@@ -17,14 +17,7 @@ const Appoinment = () => {
     dispatch(fetchDoctorDetails(id));
   }, [dispatch, id]);
 
-  // Debugging the image issue
-  useEffect(() => {
-    if (doctorDetails?.image) {
-      console.log("Doctor Image URL:", doctorDetails.image);
-    } else {
-      console.log("Doctor Image URL is undefined or null");
-    }
-  }, [doctorDetails]);
+ 
 
   if (isLoading) {
     return (

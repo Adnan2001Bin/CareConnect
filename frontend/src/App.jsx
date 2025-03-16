@@ -92,7 +92,6 @@ function App() {
         { path: "about", element: <About /> },
         { path: "my-profile", element: <MyProfile /> },
         { path: "my-appoinments", element: <MyAppoinments /> },
-        { path: "appoinments", element: <Appoinment /> },
         { path: "appoinments/:id", element: <Appoinment /> },
       ],
     },

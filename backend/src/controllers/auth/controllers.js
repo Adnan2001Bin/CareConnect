@@ -93,7 +93,7 @@ export const loginUser = async (req, res) => {
 
     validateFields(["email", "password"], req.body);
 
-    // Check if user exists
+    // Check if user exists in the User collection
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -111,6 +111,7 @@ export const loginUser = async (req, res) => {
         message: "Invalid password. Please try again.",
       });
     }
+
     // Generate token
     const token = createToken(user);
 
@@ -129,7 +130,7 @@ export const loginUser = async (req, res) => {
         id: user._id,
         userName: user.userName,
         email: user.email,
-        role: user.role,
+        role: user.role, // Include the role in the response
       },
       token,
     });

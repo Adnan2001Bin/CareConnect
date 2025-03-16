@@ -1,5 +1,8 @@
 import { imageUploadUtil } from "../../helpers/cloudinary.js";
 import { AddDoctor } from "../../models/addDoctors.js";
+import { User } from "../../models/user.model.js"
+import bcrypt from "bcryptjs";
+
 
 export const handleImageUpload = async (req, res) => {
   try {
@@ -23,6 +26,7 @@ export const handleImageUpload = async (req, res) => {
     });
   }
 };
+
 
 // Add a new Doctor
 export const addDoctor = async (req, res) => {
@@ -57,6 +61,7 @@ export const addDoctor = async (req, res) => {
       });
     }
 
+    const hashPassword = await bcrypt.hash(password, 12);
     const addNewDoctor = new AddDoctor({
       image,
       name,
@@ -70,6 +75,16 @@ export const addDoctor = async (req, res) => {
     });
 
     await addNewDoctor.save();
+
+    // Save the doctor's credentials in the User collection
+    const newUser = new User({
+      userName: name,
+      email,
+      password:hashPassword,
+      role: "doctor",
+    })
+
+    await newUser.save();
 
     res.status(201).json({
       success: true,

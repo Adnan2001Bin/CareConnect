@@ -3,6 +3,7 @@ import SpeialityMenu from "@/components/user-view/SpeialityMenu";
 import TopDoctors from "@/components/user-view/TopDoctors";
 import React from "react";
 import Banner from "../../components/user-view/Banner";
+import { Link } from "react-router";
 
 const Home = () => {
   return (
@@ -20,13 +21,13 @@ const Home = () => {
               get the care you need.
             </p>
           </div>
-          <a
-            href="#speiality"
+          <Link
+            to={"/doctorslist"}
             className="flex items-center gap-2 bg-white px-8 py-3 rounded-full text-gray-600 text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300"
           >
             Book appoinment
             <img className="w-3" src={assets.arrow_icon} alt="" />
-          </a>
+          </Link>
         </div>
 
         <div className="md:w-1/2 relative">
