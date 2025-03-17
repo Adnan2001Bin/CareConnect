@@ -27,6 +27,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from "./store/Auth-Slice";
 import Loader from "./components/Loader/Loader";
+import ForgetPassword from "./pages/auth/Forget-Password";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
@@ -50,6 +51,7 @@ function App() {
       children: [
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
+        { path: "forgot-password", element: <ForgetPassword /> },
       ],
     },
 
