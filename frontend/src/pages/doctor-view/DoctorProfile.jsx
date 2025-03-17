@@ -12,8 +12,7 @@ const DoctorProfile = () => {
     dispatch(fetchAllFilterDoctors({}));
   }, [dispatch]);
 
-  // Find the doctor whose email matches the logged-in user's email
-  const loggedInDoctor = doctorList.find((doctor) => doctor.email === user?.email);
+  const loggedInDoctor = doctorList.find((doctor) => doctor.id === user?.id);
 
   // Loading state
   if (loading) {
