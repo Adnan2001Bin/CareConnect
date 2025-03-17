@@ -209,7 +209,7 @@ const AddDoctor = () => {
   const handleSuccessToastForUpdate = () => {
     toast.success("Doctor's Data Update successfully", {
       position: "top-center",
-      autoClose: 2000,
+      autoClose: 1000,
     });
   };
 
