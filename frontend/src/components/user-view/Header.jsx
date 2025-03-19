@@ -5,7 +5,7 @@ import NavItems from "./NavItems";
 import HeaderRightContent from "./HeaderRightContent";
 
 const UserHeader = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-40 border-b-2 mx-32 sm:mx[10%] sm:mx[10%]">
       <div className="flex items-center justify-between px-4 md:px-6 h-20">
@@ -13,7 +13,23 @@ const UserHeader = () => {
           <img className="w-48 h-22 lg:w-48" src={assets.logo} alt="" />
         </Link>
 
-        <div >
+        <div className="flex gap-5">
+          <Link
+            to={"/admin/admindashboard"}
+            className="border-2 border-black rounded-xl w-28 h-9 flex justify-center items-center bg-gray-50"
+          >
+            Admin Panel
+          </Link>
+
+          <Link
+            to={"/doctor/doctordashboard"}
+            className="border-2 border-black rounded-xl w-28 h-9 flex justify-center items-center bg-gray-50"
+          >
+            Doctor Panel
+          </Link>
+        </div>
+
+        <div>
           <NavItems />
         </div>
 

@@ -58,9 +58,9 @@ function App() {
     {
       path: "/doctor",
       element: (
-        <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+        // <CheckAuth isAuthenticated={isAuthenticated} user={user}>
           <DoctorLayout />
-        </CheckAuth>
+        // </CheckAuth>
       ),
       children: [
         { path: "doctordashboard", element: <DoctorDashboard /> },
@@ -71,9 +71,9 @@ function App() {
     {
       path: "/admin",
       element: (
-        <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+        // <CheckAuth isAuthenticated={isAuthenticated} user={user}>
           <AdminLayout />
-        </CheckAuth>
+        /* </CheckAuth> */
       ),
       children: [
         { path: "admindashboard", element: <AdminDashboard /> },

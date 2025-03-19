@@ -18,7 +18,6 @@ const Appoinment = () => {
   // State to track the selected slot
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-
   const handleSuccessToast = () => {
       toast.success("Appointment booked successfully!", {
         position: "top-center",
@@ -58,6 +57,11 @@ const Appoinment = () => {
     if (selectedSlot === null) {
       toast.error("Please select a slot to book an appointment!");
       return;
+    }
+
+    if(!user) {
+      navigate("/auth/login")
+      toast.error("Please Login first!");
     }
 
     try {
