@@ -10,7 +10,7 @@ export const addNewDoctor = createAsyncThunk(
   "/doctors/add",
   async (formdata) => {
     const result = await axios.post(
-      "http://localhost:5000/api/admin/doctors/add",
+       `${import.meta.env.VITE_API_BASE_URL}/api/admin/doctors/add`,
       formdata,
       {
         headers: {
@@ -26,7 +26,7 @@ export const fetchAlldoctors = createAsyncThunk(
   "/doctors/fetchAlldoctors",
   async () => {
     const result = await axios.get(
-      "http://localhost:5000/api/admin/doctors/get"
+      `${import.meta.env.VITE_API_BASE_URL}/api/admin/doctors/get`
     );
 
     return result?.data;
@@ -37,7 +37,7 @@ export const editDoctor = createAsyncThunk(
   "/doctors/editDoctor",
   async ({ id, formData }) => {
     const result = await axios.put(
-      `http://localhost:5000/api/admin/doctors/edit/${id}`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/admin/doctors/edit/${id}`,
       formData,
       {
         headers: {
@@ -54,7 +54,7 @@ export const deleteDoctor = createAsyncThunk(
   "/doctors/deletedoctor",
   async (id) => {
     const result = await axios.delete(
-      `http://localhost:5000/api/admin/doctors/delete/${id}`
+      `${import.meta.env.VITE_API_BASE_URL}/api/admin/doctors/delete/${id}`
     );
 
     return result?.data;
