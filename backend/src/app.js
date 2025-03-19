@@ -13,18 +13,21 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
-    methods: ["GET", " POST", "DELETE", "PUT"],
+    origin: process.env.CORS_ORIGIN.split(",") || [
+      "http://localhost:5300",
+      "https://care-connect-cc-self.vercel.app/",
+    ],
+    methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
       "Authorization",
       "Cache-Control",
       "Expires",
       "Pragma",
+      "X-Requested-With"
     ],
     credentials: true,
     optionsSuccessStatus: 204
-
   })
 );
 
