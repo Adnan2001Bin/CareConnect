@@ -15,8 +15,9 @@ app.use(
   cors({
     origin: process.env.CORS_ORIGIN.split(",") || [
       "http://localhost:5300",
-      "https://care-connect-cc-self.vercel.app/",
+      "https://care-connect-one-one.vercel.app/",
     ],
+    
     methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
